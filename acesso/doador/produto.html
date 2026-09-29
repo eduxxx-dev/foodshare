@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>FoodShare - Registar Doação</title>
+
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap-icons.css" rel="stylesheet">
+    <link href="../../css/templatemo-kind-heart-charity.css" rel="stylesheet">
+    <link href="../../css/template-styles.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="form-page">
+
+    <div class="form-card">
+        <header class="form-header">
+            <a href="doador.php" class="btn-voltar">
+                <i class="fa-solid fa-chevron-left"></i> Voltar ao Painel
+            </a>
+            <h2>Registar Alimento</h2>
+            <p>Ajude a reduzir o desperdício doando o que sobra.</p>
+        </header>
+
+        <form class="eco-form" action="processar_doacao.php" method="POST" enctype="multipart/form-data">
+
+            <div class="form-group">
+                <label><i class="fa-solid fa-tag me-2"></i>O que vai doar?</label>
+                <input type="text" name="produto" placeholder="Ex: 15 doses de Bacalhau com Natas" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label><i class="fa-solid fa-list me-2"></i>Categoria</label>
+                    <select name="categoria">
+                        <option>Refeições Prontas</option>
+                        <option>Frutas e Legumes</option>
+                        <option>Padaria e Pastelaria</option>
+                        <option>Produtos Secos/Enlatados</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-weight-hanging me-2"></i>Quantidade</label>
+                    <input type="text" name="quantidade" placeholder="Ex: 5kg ou 10 uni." required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fa-solid fa-clock me-2"></i>Disponível para recolha até:</label>
+                <input type="datetime-local" name="validade" required>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fa-solid fa-align-left me-2"></i>Observações Importantes</label>
+                <textarea name="descricao" rows="3" placeholder="Ex: Contém lactose. Levar recipientes próprios se possível."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fa-solid fa-camera me-2"></i>Foto do Alimento</label>
+                <div class="file-drop-area" onclick="document.getElementById('fileInput').click()">
+                    <input type="file" name="foto" id="fileInput" hidden>
+                    <i class="fa-solid fa-image fa-2x mb-2" style="color: #2ecc71;"></i>
+                    <p class="mb-0 text-muted">Clique para carregar uma imagem</p>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit-form">
+                <i class="fa-solid fa-paper-plane me-2"></i> Publicar agora
+            </button>
+        </form>
+    </div>
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/jquery.sticky.js"></script>
+    <script src="../../js/custom.js"></script>
+
+    <script>
+        // Pequeno script para mostrar o nome do ficheiro quando selecionado
+        document.getElementById('fileInput').onchange = function() {
+            if(this.files.length > 0) {
+                document.querySelector('.file-drop-area p').innerHTML = "Ficheiro: " + this.files[0].name;
+                document.querySelector('.file-drop-area p').style.color = "#2ecc71";
+            }
+        };
+    </script>
+
+</body>
+</html>

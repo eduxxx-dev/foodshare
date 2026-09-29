@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="estiloo.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Criar Conta | FoodShare</title>
+</head>
+<body>
+    <main class="container">
+        <form id="form-registro" action="processar_registo.php" method="POST">
+            <h1>
+                <img src="../../images/logoo.png" width="70" alt="Logo">
+                Foodshare
+            </h1>
+
+            <h3>Criar conta</h3>
+            <div class="palavra">
+                <p>Junte-se à comunidade</p>
+            </div>
+
+            <div class="input-box">
+                <label for="name" class="form_label"> Nome Completo</label>
+                <div class="input-field">
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Seu nome" required autocomplete="name">
+                    <i class="bx bxs-user"></i>
+                </div>
+            </div>
+
+            <div class="input-box">
+                <label for="email" class="form_label">E-mail</label>
+                <div class="input-field">
+                    <input type="email" name="email" id="email" class="form-control" placeholder="seu@gmail.com" required>
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+            </div>
+
+            <div class="input-box">
+                <label for="nif" class="form_label">NIF / NIPC *</label>
+                <div class="input-field">
+                    <input type="text" name="nif" id="nif" class="form-control" placeholder="9 dígitos" maxlength="9" required>
+                    <i class="fa-solid fa-id-card"></i>
+                </div>
+            </div>
+
+            <div class="input-box">
+                <label for="password" class="form_label">Password</label>
+                <div class="input-field">
+                    <input type="password" name="password" id="password" class="form-control" placeholder="*****" required>
+                </div>
+            </div>
+
+            <div class="input-box">
+                <label for="confirm_password" class="form_label">Confirmar Password</label>
+                <div class="input-field">
+                    <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="*****" required>
+                </div>
+            </div>
+
+            <div class="input-box">
+                <label for="phone" class="form_label">Telemóvel</label>
+                <div class="input-field">
+                    <input type="tel" name="phone" id="phone" class="form-control" placeholder="9xx xxx xxx" required>
+                    <i class="fa-solid fa-phone"></i>
+                </div>
+            </div>
+
+            <div class="input-box">
+                <label for="tipo-conta" class="form_label">Tipo de Conta *</label>
+                <div class="input-field">
+                    <select name="tipo-conta" id="tipo-conta" class="form-control" required>
+                        <option value="" disabled selected>Selecione uma opção</option>
+                        <option value="doador">Doador (Empresa/Restaurante)</option>
+                        <option value="voluntario">Voluntário</option>
+                        <option value="beneficiario">Beneficiário (Instituição/Carente)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="campos-doador" style="display: none;">
+                <div class="input-box">
+                    <label class="form_label">Nome do Restaurante/Empresa</label>
+                    <div class="input-field">
+                        <input type="text" name="empresa" class="form-control" placeholder="Ex: Restaurante Central">
+                        <i class="fa-solid fa-store"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div id="campos-beneficiario" style="display: none;">
+                <div class="input-box">
+                    <label class="form_label">N.º de Pessoas no Agregado</label>
+                    <div class="input-field">
+                        <input type="number" name="agregado" class="form-control" placeholder="Ex: 4">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-box">
+                <label for="location" class="form_label">Localidade</label>
+                <div class="input-field">
+                    <input type="text" name="location" id="location" class="form-control" placeholder="Sua cidade" required>
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-login">Criar conta</button>
+
+            <div class="register-link">
+                <p>Já tem conta? <a href="../entrar/entrar.html">Entrar</a></p>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        const selectConta = document.getElementById('tipo-conta');
+        const divDoador = document.getElementById('campos-doador');
+        const divBeneficiario = document.getElementById('campos-beneficiario');
+
+        selectConta.addEventListener('change', function() {
+            divDoador.style.display = 'none';
+            divBeneficiario.style.display = 'none';
+
+            if (this.value === 'doador') {
+                divDoador.style.display = 'block';
+            } else if (this.value === 'beneficiario') {
+                divBeneficiario.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

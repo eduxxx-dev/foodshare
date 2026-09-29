@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="estilo.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Login Foodshare</title>
+
+    <style>
+        /* Pequeno ajuste para garantir que a logo apareça bem */
+        .logo-img {
+            border-radius: 50%;
+            margin-bottom: 10px;
+            object-fit: cover;
+        }
+        /* Estilo para as caixas de alerta */
+        .alert-box {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .alert-danger {
+            background-color: #fde8e8;
+            color: #e53e3e;
+            border: 1px solid #f8b4b4;
+        }
+        .alert-warning {
+            background-color: #fefcbf;
+            color: #b7791f;
+            border: 1px solid #fef3c7;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <form action="processar_login.php" method="POST">
+            <h1>
+                <img src="../../images/logoo.png" width="70" alt="Logo" class="logo-img">
+                Foodshare
+            </h1>
+
+            <h3>Bem-vindo de volta</h3>
+
+            <div class="palavra">
+                <p>Faça login na sua conta</p>
+            </div>
+
+            <div id="mensagem-erro"></div>
+
+            <div class="input-box">
+                <input placeholder="Email" type="email" name="email" required>
+                <i class="bx bxs-user"></i>
+            </div>
+
+            <div class="input-box">
+                <input placeholder="Senha" type="password" name="password" required>
+                <i class="bx bxs-lock-alt"></i>
+            </div>
+
+            <div class="remember-forgot">
+                <label>
+                    <input type="checkbox">
+                    Lembrar senha
+                </label>
+                <a href="#">Esqueci a senha</a>
+            </div>
+
+            <button type="submit" class="btn-login">Login</button>
+
+            <div class="register-link">
+                <p>Não tem uma conta? <a href="../registarr/registarr.html">Registar-se</a></p>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const erro = urlParams.get('erro');
+        const containerErro = document.getElementById('mensagem-erro');
+
+        if (erro === 'pendente') {
+            containerErro.innerHTML = `<div class="alert-box alert-warning"><i class="fa-solid fa-clock"></i> A tua conta ainda está em análise pelo Administrador. Por favor, aguarda.</div>`;
+        } else if (erro === 'reprovado') {
+            containerErro.innerHTML = `<div class="alert-box alert-danger"><i class="fa-solid fa-circle-xmark"></i> O teu registo foi recusado pelo Administrador.</div>`;
+        } else if (erro === 'dados_invalidos') {
+            containerErro.innerHTML = `<div class="alert-box alert-danger"><i class="fa-solid fa-triangle-exclamation"></i> E-mail ou Senha incorretos.</div>`;
+        }
+    </script>
+</body>
+</html>
